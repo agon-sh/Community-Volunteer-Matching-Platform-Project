@@ -2,7 +2,7 @@ Code skeleton roles -
 
 Agon: User, Organization, Volunteer
 
-Erin: Opportunity, Application
+Erin: Opportunity, Application, ApplicationRepository
 
 Edison: OpportunityService, OpportunityRepository
 
