@@ -4,6 +4,10 @@ class Volunteer extends User {
         this.interests = interests;
     }
 
-    addInterest(interest){}
-    removeInterest(interest){}
+    addInterest(interest){
+
+    }
+    removeInterest(interest){
+        
+    }
 }

@@ -4,6 +4,10 @@ class User {
         this.email = email;
     }
 
-    login(){}
-    logout(){}
+    login(){
+
+    }
+    logout(){
+        
+    }
 }
