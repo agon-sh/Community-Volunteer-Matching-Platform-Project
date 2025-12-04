@@ -300,3 +300,47 @@ class UserRepository {
     }
 }
 
+class MatchingService {
+    constructor(opportunityRepository, strategy) {
+        this.opportunityRepository = opportunityRepository;
+        this.strategy = strategy; // Strategy object
+        console.log("MatchingService initialized with strategy:", strategy.constructor.name);
+    }
+
+    setStrategy(strategy) {
+        this.strategy = strategy;
+    }
+
+    findMatches(volunteer) {
+        console.log(`Finding matches for ${volunteer.name} using ${this.strategy.constructor.name}`);
+        const all = this.opportunityRepository.getAll();
+        return this.strategy.match(volunteer, all);
+    }
+}
+
+
+
+// Strategies
+class MatchStrategy {
+    match(volunteer, opportunities) {
+        throw new Error("match() must be implemented by subclasses");
+    }
+}
+
+// Concrete strategy: match by shared interests (current behavior)
+class InterestMatchStrategy extends MatchStrategy {
+    match(volunteer, opportunities) {
+        const interests = volunteer.interests || [];
+        if (interests.length === 0) return [];
+
+        const results = [];
+        for (let i = 0; i < opportunities.length; i++) {
+            const opp = opportunities[i];
+            if (opp.available && interests.includes(opp.interest)) {
+                results.push(opp);
+            }
+        }
+        return results;
+    }
+}
+
